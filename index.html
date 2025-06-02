@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <title>Reconocimiento</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tuffy:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="/assets/img/web.ico" type="image/x-icon">
+</head>
+
+<body class="relative text-black dark:text-white">
+    <div class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
+      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
+      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+
+    <header class="pt-6 w-full">
+        <p class="text-4xl text-white font-extrabold uppercase text-center">Proyecto de reconocimiento de animales
+        </p>
+    </header>
+    <div class="flex wfull max-w-full justify-center items-center mt-4">
+        <p class="text-center opacity-80 w-2/3 text-balance"><span class="text-amber-600 font-bold">Concepto:</span> Si tienes gran cantidad de <span class="text-amber-400 font-bold">imagenes de animales</span> y buscas clasificar por carpeta cada especie, esta herramienta es ideal, ya que puedes subir la cantidad de imágenes necesarias y te devolverá un <span class="text-amber-400 font-bold">ZIP comprimido</span> con carpetas de la especie del animal identificado.</p>
+    </div>
+    <div class="container flex w-full max-w-full px-3 md:px-0">
+        <div
+            class="sm:py-0 py-10 grid grid-cols-1 md:grid-cols-2 items-center justify-center border-0 bg-white shadow-sm rounded-xl min-h-[28rem] relative w-full mt-5 md:mx-40 mx-0 px-2 md:px-8 gap-4">
+            <label for="file-upload"
+                class="mb-6 md:mb-10 flex flex-col items-center justify-center h-48 md:h-3/4 w-full cursor-pointer group border-blue-300 rounded-lg bg-blue-800 bg-opacity-30 hover:bg-opacity-50 transition">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-14 w-14 text-blue-300 group-hover:text-white mb-3 transition-colors duration-300"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12" />
+                </svg>
+                <span
+                    class="text-white font-semibold text-lg group-hover:text-blue-200 transition-colors duration-300">Haz
+                    clic o arrastra imágenes aquí</span>
+                <span class="text-blue-200 text-xs mt-2 group-hover:text-white transition-colors duration-300">(PNG,
+                    JPG,
+                    JPEG, GIF, BMP, WEBP)</span>
+                <input id="file-upload" name="images" type="file"
+                    accept="image/png, image/jpeg, image/jpg, image/gif, image/bmp, image/webp" multiple
+                    class="hidden" />
+            </label>
+
+            <!-- Imagenes subidas -->
+            <div id="preview-container"
+                class="mb-6 md:mb-10 flex flex-wrap items-start border-0 rounded-sm shadow-sm h-48 md:h-3/4 overflow-auto p-2 bg-gray-300 w-full min-h-[8rem]">
+                <p id="preview-placeholder" class="text-center text-xl font-bold w-full self-center text-gray-100">
+                    No hay imágenes seleccionadas
+                </p>
+            </div>
+
+            <!-- Botones -->
+            <div class="absolute bottom-2 md:bottom-4 right-2 md:right-8 flex gap-2 md:gap-4">
+                <button id="clear-btn" type="button"
+                    class="rounded-lg bg-red-500 text-white px-3 md:px-4 py-2 font-semibold shadow-md hover:bg-red-600 transition">Limpiar</button>
+                <button id="upload-btn" type="button"
+                    class="rounded-lg bg-blue-700 border-none text-white px-4 md:px-6 py-2 font-semibold shadow-md hover:opacity-90">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-full w-full container mt-8">
+        <p class="text-center opacity-60 group">
+            Proyecto desarrollado por
+            <a href="https://dev-paul.com" target="_blank" class="text-blue-600 font-bold group-hover:text-blue-700 underline transition-colors">
+                Paul ❤️
+            </a>
+        </p>
+    </div>
+
+</body>
+
+<script src="assets/js/javascript.js"></script>
+
+</html>
